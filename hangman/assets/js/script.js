@@ -1,36 +1,27 @@
-{
-  /* <p id="demo"></p>; */
-}
+const timerCount = document.getElementById("large-font timer-count");
+const secondsRemaining = document.getElementById("seconds-remaining");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
+const startButton = document.getElementById("start-button");
 
-// const startTimer = () => {
-//   let now = new Date().getTime();
-//   let tenSecondsFromNow = new Date().getTime() + 10000;
-
-//   let seconds = tenSecondsFromNow - now;
-
-//   let timer = Math.floor((seconds % (1000 * 60)) / 1000);
-
-//   document.getElementById("timer").innerHTML = timer;
-// };
-
-let count = 9;
-let intervalId;
+var count = 9;
+var intervalId;
 
 const startTimer = () => {
+  startButton.onclick = null;
   if (count >= 0) {
     intervalId = setInterval(
       (countSeconds = () => {
         if (count > 1) {
-          document.getElementById("timer").innerHTML = count;
+          timerCount.innerHTML = count;
           count -= 1;
         } else if (count === 1) {
-          document.getElementById("timer").innerHTML = count;
+          timerCount.innerHTML = count;
           count -= 1;
-          document.getElementById("seconds-remaining").innerHTML =
-            "second remaining";
+          secondsRemaining.innerHTML = "second remaining";
         } else if (count === 0) {
-          document.getElementById("timer").innerHTML = count;
-          document.getElementById("seconds-remaining").innerHTML = "time's up";
+          timerCount.innerHTML = count;
+          secondsRemaining.innerHTML = "time's up";
           clearInterval(intervalId);
         }
       }),
@@ -39,14 +30,12 @@ const startTimer = () => {
   }
 };
 
-// const tenSeconds = (num) => {
-//   if (num >= 0) {
-//     let seconds = num;
-//     ten -= 1;
-//     console.log(num);
-//     document.getElementById("timer").innerHTML = seconds;
-//     console.log(ten);
-//   } else {
-//     return "Time's Up!";
-//   }
-// };
+const resetGame = () => {
+  count = 9;
+  timerCount.innerHTML = 10;
+  win.innerHTML = 0;
+  lose.innerHTML = 0;
+  secondsRemaining.innerHTML = "seconds remaining";
+  clearInterval(intervalId);
+  startButton.onclick = startTimer();
+};
