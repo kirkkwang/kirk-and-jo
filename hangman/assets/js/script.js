@@ -8,7 +8,6 @@ var count = 9;
 var intervalId;
 
 const startTimer = () => {
-  startButton.onclick = null;
   if (count >= 0) {
     intervalId = setInterval(
       (countSeconds = () => {
@@ -37,5 +36,4 @@ const resetGame = () => {
   lose.innerHTML = 0;
   secondsRemaining.innerHTML = "seconds remaining";
   clearInterval(intervalId);
-  startButton.onclick = startTimer();
 };
